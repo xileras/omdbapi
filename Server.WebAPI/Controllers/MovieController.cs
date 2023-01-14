@@ -8,17 +8,17 @@ namespace Server.WebAPI.Controllers
     [ApiController]
     public class MovieController : ControllerBase
     {
-        private readonly OmdbMovieWrapper omdbMovieWrapper;
+        private readonly OmdbMovieWrapper _omdbMovieWrapper;
 
-        public MovieController()
+        public MovieController(OmdbMovieWrapper omdbMovieWrapper)
         {
-            omdbMovieWrapper = new OmdbMovieWrapper(); // Probably should be DI.
+            _omdbMovieWrapper = omdbMovieWrapper; // Probably should be DI.
         }
 
         [HttpGet]
         public async Task<MovieLookupResult> Get()
         {
-            var movie = await omdbMovieWrapper.GetMovieByTitleOrID(new MovieLookupParameters { IMDbID = "tt1285016" });
+            var movie = await _omdbMovieWrapper.GetMovieByTitleOrID(new MovieLookupParameters { IMDbID = "tt1285016" });
 
             return movie;
         }
@@ -27,7 +27,7 @@ namespace Server.WebAPI.Controllers
         public async Task<MovieSearchResult> GetMoviesByName(string name)
         {
             // GetMoviesByName
-            var movies = await omdbMovieWrapper.GetMoviesBySearch(new MovieSearchParameters { Title = name });
+            var movies = await _omdbMovieWrapper.GetMoviesBySearch(new MovieSearchParameters { Title = name });
 
             return movies;
         }

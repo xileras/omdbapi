@@ -1,4 +1,5 @@
 ﻿using Common.Http;
+using Microsoft.Extensions.Configuration;
 using OMDB.API.Data;
 using OMDB.API.Helpers;
 
@@ -6,11 +7,13 @@ namespace OMDB.API
 {
     public class OmdbMovieWrapper
     {
-        private readonly HttpClientService httpClientService;
+        private readonly IConfiguration _configuration;
+        private readonly HttpClientService httpClientService;        
 
-        public OmdbMovieWrapper()
+        public OmdbMovieWrapper(IConfiguration configuration)
         {
-            httpClientService = new HttpClientService("http://www.omdbapi.com/?apikey=4534fb7b");
+            _configuration= configuration;
+            httpClientService = new HttpClientService($"{_configuration["OMDBAPI:url"]}/?apikey={_configuration["OMDBAPI:apiKey"]}");
         }
 
         public async Task<MovieLookupResult> GetMovieByTitleOrID(MovieLookupParameters parameters)

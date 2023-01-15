@@ -1,8 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Mvc.Authorization;
-using Microsoft.OpenApi.Models;
-using OMDB.API;
+﻿using OMDB.API;
 
 namespace Server.WebAPI
 {
@@ -45,9 +41,9 @@ namespace Server.WebAPI
 
             app.UseHttpsRedirection();
 
-            app.UseAuthorization();
-
             app.UseRouting();
+
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

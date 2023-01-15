@@ -5,6 +5,12 @@ namespace OMDB.API.Helpers
 {
     internal class ParameterParser
     {
+        /// <summary>
+        /// Builds the necessary querystring to append to the <see cref="http://www.omdbapi.com/"/> URL for a Lookup.
+        /// </summary>
+        /// <param name="parameters">The <see cref="MovieLookupParameters"/> parameters.</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentException"></exception>
         public static string BuildUrlParametersForLookup(MovieLookupParameters parameters)
         {
             if (string.IsNullOrEmpty(parameters.IMDbID) && string.IsNullOrEmpty(parameters.Title))
@@ -38,11 +44,18 @@ namespace OMDB.API.Helpers
             return builder.ToString();
         }
 
+        /// <summary>
+        /// Builds the necessary querystring to append to the <see cref="http://www.omdbapi.com/"/> URL for a Search.
+        /// </summary>
+        /// <param name="parameters">The <see cref="MovieSearchParameters"/> parameters.</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentException"></exception>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
         public static string BuildUrlParametersForSearch(MovieSearchParameters parameters)
         {
             if (string.IsNullOrEmpty(parameters.Title))
             {
-                throw new ArgumentException("Must specify either a valid movie title");
+                throw new ArgumentException("Must specify a valid movie title");
             }
 
             if (parameters.Page == 0) parameters.Page= 1;

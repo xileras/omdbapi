@@ -6,7 +6,7 @@
             Loading... Please refresh once the ASP.NET backend has started. See <a href="https://aka.ms/jspsintegrationvue">https://aka.ms/jspsintegrationvue</a> for more details.
         </div>
 
-        <div v-if="lookupResult" class="content">
+        <div v-if="!!lookupResult && !!lookupResult.title" class="content">
 
             <b-row>
                 <b-col>
@@ -74,6 +74,12 @@
             </b-row>
 
         </div>
+
+        <!-- Show no results if there is no data -->
+        <b-row v-if="!!lookupResult && lookupResult.title == null">
+            <p>No data found</p>
+        </b-row>
+
     </div>
 </template>
 

@@ -26,5 +26,11 @@ namespace Server.WebAPI.Controllers
         {
             return await _omdbMovieWrapper.GetMoviesBySearch(new MovieSearchParameters { Title = name });
         }
+
+        [HttpGet("GetMoviePoster")]
+        public async Task GetMoviePoster()
+        {
+            throw new NotImplementedException("We must become patrons in order to access the Poster API");
+        }
     }
 }

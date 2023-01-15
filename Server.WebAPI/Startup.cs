@@ -1,4 +1,5 @@
 ﻿using OMDB.API;
+using Server.WebAPI.Middleware;
 
 namespace Server.WebAPI
 {
@@ -38,6 +39,8 @@ namespace Server.WebAPI
                 app.UseDefaultFiles();
                 app.UseStaticFiles();
             }
+
+            app.UseMiddleware(typeof(ExceptionHandler));
 
             app.UseHttpsRedirection();
 

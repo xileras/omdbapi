@@ -15,10 +15,10 @@ namespace Server.WebAPI.Controllers
             _omdbMovieWrapper = omdbMovieWrapper;
         }
 
-        [HttpGet]
-        public async Task<MovieLookupResult> Get()
+        [HttpGet("{imdbId}")]
+        public async Task<MovieLookupResult> Get(string imdbId)
         {
-            return await _omdbMovieWrapper.GetMovieByTitleOrID(new MovieLookupParameters { IMDbID = "tt1285016" });
+            return await _omdbMovieWrapper.GetMovieByTitleOrID(new MovieLookupParameters { IMDbID = imdbId });
         }
 
         [HttpGet("GetMoviesByName/{name}")]

@@ -17,7 +17,8 @@
                 </b-col>
             </b-row>
 
-            <b-row v-if="searchResults">
+            <!-- Show a grid if there is data -->
+            <b-row v-if="results && results.search && dataLoaded">
                 <b-col>
 
                     <table class="table table-striped">
@@ -31,17 +32,22 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="result in searchResults.search" :key="searchResults.imdbID">
+                            <tr v-for="result in results.search" :key="results.imdbID">
                                 <td><img width="32" :src="result.poster" /></td>
                                 <td>{{ result.title }}</td>
                                 <td>{{ result.year }}</td>
-                                <td>{{ result.imdbID }}</td>
+                                <td><router-link :to="{ name: 'lookup', params: { imdbID: result.imdbID }}">{{ result.imdbID }}</router-link></td>
                                 <td>{{ result.type }}</td>
                             </tr>
                         </tbody>
                     </table>
 
                 </b-col>
+            </b-row>
+            
+            <!-- Show no results if there is no data -->
+            <b-row v-if="results && !results.search && dataLoaded">
+                <p>No data found</p>
             </b-row>
 
         </b-container>
@@ -54,28 +60,28 @@
 
     interface Data {
         filmTitle: string,
-        loading: boolean,
-        searchResults: null | MovieSearchResult
+        dataLoaded: boolean,
+        results: null | MovieSearchResult
     }
 
     export default defineComponent({
         data(): Data {
             return {
                 filmTitle: '',
-                loading: false,
-                searchResults: null
+                dataLoaded: false,
+                results: null
             };
         },
         methods: {
             searchFilm(): void {
-                this.searchResults = null;
-                this.loading = true;
+                this.results = null;
+                this.dataLoaded = false;
 
                 fetch(`Movie/GetMoviesByName/${this.filmTitle}`)
                     .then(r => r.json())
                     .then(json => {
-                        this.searchResults = json as MovieSearchResult;
-                        this.loading = false;
+                        this.results = json as MovieSearchResult;
+                        this.dataLoaded = true;
                         return;
                     });
             }

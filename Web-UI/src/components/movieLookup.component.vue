@@ -107,7 +107,16 @@
                 this.lookupResult = null;
                 this.loading = true;
 
-                fetch('Movie')
+                let url: string;
+
+                if (!!this.$route.params.imdbID) {
+                    url = `Movie/${this.$route.params.imdbID}`;
+                }
+                else {
+                    url = "Movie/tt1285016";
+                }
+
+                fetch(url)
                     .then(r => r.json())
                     .then(json => {
                         this.lookupResult = json as MovieLookupResult;

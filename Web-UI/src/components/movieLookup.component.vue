@@ -4,46 +4,32 @@
             Loading... Please refresh once the ASP.NET backend has started. See <a href="https://aka.ms/jspsintegrationvue">https://aka.ms/jspsintegrationvue</a> for more details.
         </div>
 
-        <div v-if="post" class="content">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Date</th>
-                        <th>Temp. (C)</th>
-                        <th>Temp. (F)</th>
-                        <th>Summary</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr v-for="forecast in post" :key="forecast.date">
-                        <td>{{ forecast.date }}</td>
-                        <td>{{ forecast.temperatureC }}</td>
-                        <td>{{ forecast.temperatureF }}</td>
-                        <td>{{ forecast.summary }}</td>
-                    </tr>
-                </tbody>
-            </table>
+        <div v-if="lookupResult" class="content">
+            
+            <div class="row">
+                <div class="col-md-12">
+                    <pre>{{JSON.stringify(lookupResult)}}</pre>
+                </div>
+            </div>
+
         </div>
     </div>
 </template>
 
 <script lang="ts">
     import { defineComponent } from 'vue';
-
-    type Forecasts = {
-        date: string
-    }[];
+    import { MovieLookupResult } from './movieLookup.model'
 
     interface Data {
         loading: boolean,
-        post: null | Forecasts
+        lookupResult: null | MovieLookupResult
     }
 
     export default defineComponent({
         data(): Data {
             return {
                 loading: false,
-                post: null
+                lookupResult: null
             };
         },
         created() {
@@ -57,13 +43,13 @@
         },
         methods: {
             fetchData(): void {
-                this.post = null;
+                this.lookupResult = null;
                 this.loading = true;
 
-                fetch('weatherforecast')
+                fetch('Movie')
                     .then(r => r.json())
                     .then(json => {
-                        this.post = json as Forecasts;
+                        this.lookupResult = json as MovieLookupResult;
                         this.loading = false;
                         return;
                     });

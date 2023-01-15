@@ -1,18 +1,69 @@
 <template>
     <div class="post">
-        <div v-if="loading" class="loading">
-            Loading... Please refresh once the ASP.NET backend has started. See <a href="https://aka.ms/jspsintegrationvue">https://aka.ms/jspsintegrationvue</a> for more details.
-        </div>
+        <b-container >
+            <h2>Movie Lookup</h2>
 
-        <div v-if="lookupResult" class="content">
-            
-            <div class="row">
-                <div class="col-md-12">
-                    <pre>{{JSON.stringify(lookupResult)}}</pre>
-                </div>
+            <div v-if="loading" class="loading">
+                Loading... Please refresh once the ASP.NET backend has started. See <a href="https://aka.ms/jspsintegrationvue">https://aka.ms/jspsintegrationvue</a> for more details.
             </div>
 
-        </div>
+            <div v-if="lookupResult" class="content">
+
+                <b-row>
+                    <b-col col="2">Title:</b-col> <b-col col="8">{{lookupResult.title}}</b-col>
+                </b-row>
+
+                <b-row>
+                    <b-col col="2">Year:</b-col> <b-col col="8">{{lookupResult.year}}</b-col>
+                </b-row>
+
+                <b-row>
+                    <b-col col="2">Rated:</b-col> <b-col col="8">{{lookupResult.rated}}</b-col>
+                </b-row>
+
+                <b-row>
+                    <b-col col="2">Released:</b-col> <b-col col="8">{{lookupResult.released}}</b-col>
+                </b-row>
+
+                <b-row>
+                    <b-col col="2">Runtime:</b-col> <b-col col="8">{{lookupResult.runtime}}</b-col>
+                </b-row>
+
+                <b-row>
+                    <b-col col="2">Genre:</b-col> <b-col col="8">{{lookupResult.genre}}</b-col>
+                </b-row>
+
+                <b-row>
+                    <b-col col="2">Director:</b-col> <b-col col="8">{{lookupResult.director}}</b-col>
+                </b-row>
+
+                <b-row>
+                    <b-col col="2">Writer:</b-col> <b-col col="8">{{lookupResult.writer}}</b-col>
+                </b-row>
+
+                <b-row>
+                    <b-col col="2">Actors:</b-col> <b-col col="8">{{lookupResult.actors}}</b-col>
+                </b-row>
+
+                <b-row>
+                    <b-col col="2">Plot:</b-col> <b-col col="8">{{lookupResult.plot}}</b-col>
+                </b-row>
+
+                <b-row>
+                    <b-col col="2">Language:</b-col> <b-col col="8">{{lookupResult.language}}</b-col>
+                </b-row>
+
+                <b-row>
+                    <b-col col="2">Country:</b-col> <b-col col="8">{{lookupResult.country}}</b-col>
+                </b-row>
+
+                <b-row>
+                    <b-col col="2">Awards:</b-col> <b-col col="8">{{lookupResult.awards}}</b-col>
+                </b-row>
+
+            </div>
+
+        </b-container>
     </div>
 </template>
 

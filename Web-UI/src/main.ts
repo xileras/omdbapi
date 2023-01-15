@@ -1,8 +1,13 @@
-import { createApp } from 'vue'
-import App from './App.vue'
+import { createApp } from 'vue';
+import App from './App.vue';
+import { router } from './routes';
 
-import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap-vue/dist/bootstrap-vue.css'
+import BootstrapVueNext from 'bootstrap-vue-next';
+
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap-vue/dist/bootstrap-vue.css';
 
 createApp(App)
-    .mount('#app')
+    .use(BootstrapVueNext)
+    .use(router)
+    .mount('#app');

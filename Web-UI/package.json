@@ -9,13 +9,15 @@
   },
   "dependencies": {
     "@popperjs/core": "^2.11.6",
-    "bootstrap": "^5.3.0-alpha1",
+    "bootstrap": "^5.2.3",
     "bootstrap-vue": "^2.23.1",
+    "bootstrap-vue-next": "^0.6.1",
     "core-js": "^3.8.3",
     "jest": "^29.3.1",
     "jest-editor-support": "^31.0.0",
     "portal-vue": "^3.0.0-beta.0",
-    "vue": "^3.2.45"
+    "vue": "^3.2.45",
+    "vue-router": "^4.1.6"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",

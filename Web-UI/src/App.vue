@@ -1,19 +1,18 @@
 <template>
-    <h1>OMDB API Web App</h1>
-
-    <div>
-
-    </div>
-
-    <b-container>
+    
+    <b-container fluid>
+        <h1 class="main-title">OMDB API Web App</h1>
         <b-row>
-            <b-col cols="2">
+            <b-col class="nav-menu" cols="2">
                 <b-nav vertical class="w-75">
                     <b-nav-item active>
                         <router-link to="/">Home</router-link>
                     </b-nav-item>
                     <b-nav-item>
                         <router-link to="/movieLookup">Movie Lookup</router-link>
+                    </b-nav-item>
+                    <b-nav-item>
+                        <router-link to="/movieSearch">Movie Search</router-link>
                     </b-nav-item>
                 </b-nav>
             </b-col>
@@ -42,8 +41,22 @@
         font-family: Avenir, Helvetica, Arial, sans-serif;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
-        text-align: center;
         color: #2c3e50;
-        margin-top: 60px;
+        padding-top: 60px;
+        background-color: #e5e5e5;
+    }
+
+    .main-title {
+        text-align: center;
+    }
+
+    .nav-menu a {
+        color: #000000;
+        text-decoration: none;
+    }
+
+    .nav-menu a:hover {
+        color: #000000;
+        text-decoration: underline;
     }
 </style>

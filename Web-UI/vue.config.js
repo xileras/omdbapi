@@ -26,7 +26,7 @@ module.exports = {
         proxy: {
             '^/Movie': {
                 target: 'https://localhost:5001/api'
-            }
+            },
         },
         port: 5002
     }

@@ -1,14 +1,16 @@
+import { createRouter, createWebHashHistory } from "vue-router";
+
 import Home from "./components/home.component.vue";
 import movieLookupComponentVue from "./components/movieLookup.component.vue";
-import { createRouter, createWebHashHistory } from "vue-router";
+import movieSearchComponentVue from "./components/movieSearch.component.vue";
 
 const routes = [
     { path: '/', component: Home },
-    { path: '/movieLookup', component: movieLookupComponentVue}
+    { path: '/movieLookup', component: movieLookupComponentVue },
+    { path: '/movieSearch', component: movieSearchComponentVue }
 ];
 
 export const router = createRouter({
-    // 4. Provide the history implementation to use. We are using the hash history for simplicity here.
     history: createWebHashHistory(),
-    routes, // short for `routes: routes`
+    routes
 });
